@@ -1,8 +1,10 @@
 # Cream🍦: Visually-Situated Natural Language Understanding with Contrastive Reading Model and Frozen Large Language Models
 
+[![Paper](https://img.shields.io/badge/Paper-arxiv.2305.15080-red)](https://arxiv.org/abs/2305.15080)
+
 The repository will be updated to contain the codebase and datasets for the paper:
 
-**"Cream🍦: Visually-Situated Natural Language Understanding with Contrastive Reading Model and Frozen Large Language Models"**
+**"[Cream🍦: Visually-Situated Natural Language Understanding with Contrastive Reading Model and Frozen Large Language Models](https://arxiv.org/abs/2305.15080)"**
 
 Please stay tuned for the updates and thank you for your patience.
 
