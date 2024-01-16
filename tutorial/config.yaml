@@ -1,0 +1,77 @@
+# Train with:
+# (1) CPU.
+# python train.py --config tutorial/config.yaml
+# (2) Single-GPU.
+# CUDA_VISIBLE_DEVICES=0 python train.py --config tutorial/config.yaml --accelerator gpu --vision_layers 48  --max_patches 128 --max_position_embeddings 128
+# (3) Multi-GPU. Two GPUs will be used in the following example:
+# CUDA_VISIBLE_DEVICES=0,1 python train.py --config tutorial/config.yaml --accelerator gpu --vision_layers 48  --max_patches 128 --max_position_embeddings 128 --train.phase_0.synthetic_epoch_steps 14
+# (4) Multi-Node-Multi-GPU. Four (= 2x2) GPUs will be used in the following example:
+# export MASTER_ADDR={{MASTER_ADDR}} && export TCP_STORE_ADDR={{TCP_STORE_ADDR}} && export WORLD_SIZE=2 && export NODE_RANK={{NODE_RANK}} && export MASTER_PORT={{MASTER_PORT}} && export TCP_STORE_PORT={{TCP_STORE_PORT}}
+# CUDA_VISIBLE_DEVICES=0,1 python train.py --config tutorial/config.yaml --accelerator gpu --vision_layers 48  --max_patches 128 --max_position_embeddings 128 --train.phase_0.synthetic_epoch_steps 7 --num_nodes 2
+#
+# Test with:
+# python test.py --dataset_name_or_path ./tutorial/sample_datasets/squad2.0 --pretrained_checkpoint_path ./tutorial/results/{result_dir:xxxxxxxx_xxxxxx}/last.ckpt
+verbose: true
+num_nodes: 1
+exp_name: tutorial/results
+skip_custom_init: true
+accelerator: "cpu"
+encoder_layers: 1
+decoder_layers: 1
+vision_layers: 1
+max_patches: 4
+max_enc_position_embeddings: 2
+max_position_embeddings: 32
+
+train:
+  phase_0:
+    num_epochs: 1
+    synthetic_epoch_steps: 10
+    batch_size: 1
+    dataset_name_or_paths: [
+      "./tutorial/sample_datasets/wkvvqa",
+      "./tutorial/sample_datasets/squad2.0",
+      "./tutorial/sample_datasets/tydiqa",
+    ]
+    mutiple: [
+      1,
+      1,
+      1,
+    ]
+    tasks: [
+      "qa",
+      "qa",
+      "qa",
+    ]
+    dataset_type: "default"
+  phase_1:
+    num_epochs: 1
+    synthetic_epoch_steps: 2
+    batch_size: 1
+    dataset_name_or_paths: [
+      "./tutorial/sample_datasets/squad2.0",
+    ]
+    mutiple: [
+      1,
+    ]
+    tasks: [
+      "qa",
+    ]
+    dataset_type: "default"
+val:
+  batch_size: 1
+  dataset_name_or_paths: [
+    "./tutorial/sample_datasets/squad2.0",
+  ]
+  dataset_type: "default"
+
+callbacks:
+  monitor:
+    mode: "min"
+    target: "val_metric"
+  model_checkpoint:
+    filename: "artifacts-{epoch:05d}-{step:07d}-{val_metric:.3f}"
+    save_top_k: 1
+    save_last: true
+    save_last_hf_format: true
+    every_n_epochs: 1
