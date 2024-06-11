@@ -4,7 +4,7 @@
 [![Paper](https://img.shields.io/badge/Paper-arxiv.2305.15080-orange)](https://arxiv.org/abs/2305.15080)
 [![Conference](https://img.shields.io/badge/EMNLP-2023-red)](#how-to-cite)
 
-Official Implementation of Cream | [Paper](https://arxiv.org/abs/2305.15080) | [Slide](https://docs.google.com/presentation/d/1KziORzEtfHelFmhDWGq9WXIlQzTSGHoiOylxbSK4jPs/edit?usp=sharing) | [Poster](https://drive.google.com/file/d/1nYzBgy9a1o0BunD5jsywPecGpPJakCz1/view?usp=sharing)
+Official Implementation of Cream | [Paper](https://arxiv.org/abs/2305.15080) | [Data](https://huggingface.co/naver-clova-ix) | [Slide](https://docs.google.com/presentation/d/1KziORzEtfHelFmhDWGq9WXIlQzTSGHoiOylxbSK4jPs/edit?usp=sharing) | [Poster](https://drive.google.com/file/d/1nYzBgy9a1o0BunD5jsywPecGpPJakCz1/view?usp=sharing)
 </div>
 
 ## Introduction
